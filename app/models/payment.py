@@ -1,6 +1,6 @@
 from pydantic import BaseModel
-from datetime import datetime
 from typing import Optional
+from datetime import datetime
 from enum import Enum
 
 class PaymentMethod(str, Enum):
@@ -13,12 +13,10 @@ class TransactionStatus(str, Enum):
     PENDING = "PENDING"
     FAILED = "FAILED"
 
-# Nested models
 class Location(BaseModel):
     address: str
     latitude: float
     longitude: float
-
 
 class TripDetails(BaseModel):
     pickup_location: Location
@@ -26,7 +24,6 @@ class TripDetails(BaseModel):
     distance_km: float
     duration_minutes: int
     wait_time_minutes: int
-
 
 class FareBreakdown(BaseModel):
     base_fare: float
@@ -39,22 +36,32 @@ class FareBreakdown(BaseModel):
     platform_fee: float
     total_fare: float
 
-
 class PaymentDetails(BaseModel):
-    collected_by: str
-    cash_collected: float
-    change_amount: float
+    # For Cash payments
+    collected_by: Optional[str] = None
+    cash_collected: Optional[float] = None
+    change_amount: Optional[float] = None
+    
+    # For Card payments
+    card_type: Optional[str] = None
+    last_four: Optional[str] = None
+    payment_gateway: Optional[str] = None
+    
+    # For MFS payments
+    provider: Optional[str] = None
+    provider_transaction_id: Optional[str] = None
+    sender_number: Optional[str] = None
+    payment_type: Optional[str] = None
+    gateway_fee: Optional[float] = None
 
-
-# Main model
-class ReceivedPayment(BaseModel):
+class Payment(BaseModel):
+    transaction_id: str
     user_id: str
     ride_id: str
     trip_details: TripDetails
     fare_breakdown: FareBreakdown
     amount: float
-    transaction_status: TransactionStatus  # Using enum
-    created_at: int
-    payment_method: PaymentMethod  # Using enum
-    transaction_id: str
+    transaction_status: TransactionStatus
+    payment_method: PaymentMethod
     payment_details: PaymentDetails
+    created_at: int  # timestamp in milliseconds

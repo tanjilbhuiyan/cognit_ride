@@ -30,7 +30,7 @@ async def run_consumer_in_background():
     # Wait for both tasks to complete (they won't, since they run forever)
     await asyncio.gather(task1, task2)
 
-#
+
 # @app.on_event("startup")
 # async def startup_event():
 #     # Schedule the background tasks to run concurrently
