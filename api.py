@@ -1,33 +1,16 @@
 import asyncio
-import json
-
 import uvicorn
-from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+import json
 from app.event_recievers.recieve_passanger_added_event import consume_passenger_events
 from app.event_recievers.recieve_rider_added_event import consume_rider_events
-from app.repository.database import db
 from app.tests.events_tester import publish_message
-
-# from app.controller.PaymentAccount.payment_account import router as payment_account_router
-
-
-# @asynccontextmanager
-# async def lifespan(app: FastAPI):
-#     # Create database tables on application startup
-#     db.connect()
-#     yield
-#     # Clean up resources on application shutdown
-#     db.close()
-
 
 app = FastAPI(
     title="A.Xpress",
     docs_url="/api/docs",
     debug=True,
-    # lifespan=lifespan
 )
 
 app.add_middleware(
@@ -37,14 +20,13 @@ app.add_middleware(
 
 # app.include_router(payment_account_router, prefix="/api/v1")
 
-
 async def run_consumer_in_background():
     # data = {
-    #     "id": "60a7c8e77c213e5ce1234567",
+    #     "id": "60a7c8e377c23413e5ce12563455",
     #     "firstName": "John",
     #     "lastName": "Doe",
-    #     "email": "john.doe@example.com",
-    #     "phone": "+1-555-123-4567",
+    #     "email": "john2342343.doe@example.com",
+    #     "phone": "+1-555-123-4567-23-34-23",
     #     "identificationNumber": "AB1234567",
     #     "identificationType": "Driver's License",
     #     "identificationDocuments": [
