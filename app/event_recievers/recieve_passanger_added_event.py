@@ -7,11 +7,13 @@ fake = Faker()
 
 # RabbitMQ connection credentials
 rabbitmq_url = "amqps://avxpoguo:Da6pggbTCzcN6BiyrTnva-7549c5dU89@fuji.lmq.cloudamqp.com/avxpoguo"
-queue_name = "test_data"
+queue_name = "passenger_registration_exchange"
 
 # MongoDB connection credentials
 username = "snewaj"
 password = "d5JozZrX66g5sSyD"
+
+
 # cluster_url = "mongoloadcluster.bdsnb.mongodb.net"
 # database_name = "resumeDatabase"  # The name of the database you want to access
 # collection_name = "resumes"  # The name of the collection you want to query
@@ -28,7 +30,7 @@ def callback(ch, method, properties, body):
     ch.basic_ack(delivery_tag=method.delivery_tag)
 
 
-def consume_messages():
+def consume_passenger_events():
     # Establish a connection to RabbitMQ server using pika
     parameters = pika.URLParameters(rabbitmq_url)
     connection = pika.BlockingConnection(parameters)
@@ -41,6 +43,6 @@ def consume_messages():
     channel.basic_qos(prefetch_count=1)  # Limit the number of messages sent at once
     channel.basic_consume(queue=queue_name, on_message_callback=callback)
 
-    print("Waiting for messages...")
+    print("Waiting for passangers...")
     # Start consuming messages
     channel.start_consuming()
