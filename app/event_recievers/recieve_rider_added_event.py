@@ -17,7 +17,7 @@ db_params = {
     "dbname": db_name,
     "user": db_user,
     "password": db_pass,
-    "host": db_host,
+    "host": "172.16.215.129",
     "port": db_port
 }
 
