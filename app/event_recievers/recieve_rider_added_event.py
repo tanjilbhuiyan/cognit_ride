@@ -10,7 +10,7 @@ fake = Faker()
 
 # RabbitMQ connection credentials
 rabbitmq_url = "amqps://avxpoguo:Da6pggbTCzcN6BiyrTnva-7549c5dU89@fuji.lmq.cloudamqp.com/avxpoguo"
-queue_name = "driver_registration_exchange"
+queue_name = "drivers_payments"
 
 # PostgreSQL connection parameters from database.py
 db_params = {
@@ -21,13 +21,14 @@ db_params = {
     "port": db_port
 }
 
+
 def callback(ch, method, properties, body):
     print("Received message...")
     try:
         # Decode bytes to string if needed
         if isinstance(body, bytes):
             body = body.decode('utf-8')
-        
+
         # Parse the incoming JSON data - handle potential double encoding
         try:
             # First parse
@@ -38,7 +39,7 @@ def callback(ch, method, properties, body):
         except json.JSONDecodeError:
             # If first parse fails, try direct use
             data = body
-            
+
         print(f"Final parsed data type: {type(data)}")
         print(f"Final parsed data content: {data}")
 
