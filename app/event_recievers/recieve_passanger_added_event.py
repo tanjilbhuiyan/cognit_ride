@@ -29,7 +29,7 @@ def callback(ch, method, properties, body):
         # Decode bytes to string if needed
         if isinstance(body, bytes):
             body = body.decode('utf-8')
-        
+
         # Parse the incoming JSON data - handle potential double encoding
         try:
             # First parse
@@ -40,7 +40,7 @@ def callback(ch, method, properties, body):
         except json.JSONDecodeError:
             # If first parse fails, try direct use
             data = body
-            
+
         print(f"Final parsed data type: {type(data)}")
         print(f"Final parsed data content: {data}")
 
@@ -115,6 +115,8 @@ def consume_passenger_events():
 
     # Declare the queue to ensure it exists
     channel.queue_declare(queue=queue_name, durable=True)
+    exchange_name = 'passenger_registration_exchange'  # Name of the exchange created by the other team
+    channel.queue_bind(exchange=exchange_name, queue=queue_name)
 
     # Set up the consumer to receive messages from the queue
     channel.basic_qos(prefetch_count=1)  # Limit the number of messages sent at once
