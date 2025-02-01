@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.event_recievers.recieve_passanger_added_event import consume_passenger_events
-from app.event_recievers.recieve_ride_added_event import consume_rider_events
+from app.event_recievers.recieve_rider_added_event import consume_rider_events
 from app.repository.database import db
 from app.tests.events_tester import publish_message
 

@@ -6,12 +6,11 @@ from datetime import datetime
 from urllib.parse import quote_plus
 from app.repository.database import db_user, db_pass, db_name, db_host, db_port
 
-# Initialize Faker to generate fake data
 fake = Faker()
 
 # RabbitMQ connection credentials
 rabbitmq_url = "amqps://avxpoguo:Da6pggbTCzcN6BiyrTnva-7549c5dU89@fuji.lmq.cloudamqp.com/avxpoguo"
-queue_name = "passenger_registration_exchange"
+queue_name = "driver_registration_exchange"
 
 # PostgreSQL connection parameters from database.py
 db_params = {
@@ -21,7 +20,6 @@ db_params = {
     "host": db_host,
     "port": db_port
 }
-
 
 def callback(ch, method, properties, body):
     print("Received message...")
@@ -58,22 +56,24 @@ def callback(ch, method, properties, body):
             data['email'],
             data['phone'],
             data['presentAddress'],
-            data['status'],  # Store status as string directly
+            data['status'],
             float(data['rating']),
-            datetime.fromtimestamp(int(data['createdAt']) / 1000)  # Convert milliseconds to datetime
+            datetime.fromtimestamp(int(data['createdAt']) / 1000),  # Convert milliseconds to datetime
+            data['licenseType'],
+            data['vehicleType']
         )
 
         # SQL insert statement
         insert_query = """
-            INSERT INTO passengers_info 
-            (firstname, lastname, email, phone, presentaddress, status, rating, createdat)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            INSERT INTO drivers_info 
+            (firstname, lastname, email, phone, presentaddress, status, rating, createdat, licensetype, vehicletype)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         # Execute the insert
         cur.execute(insert_query, insert_data)
         conn.commit()
-        print("Passenger data saved successfully")
+        print("Driver data saved successfully")
 
         # Close database connection
         cur.close()
@@ -101,7 +101,7 @@ def callback(ch, method, properties, body):
         ch.basic_nack(delivery_tag=method.delivery_tag)
 
 
-def consume_passenger_events():
+def consume_rider_events():
     # Establish a connection to RabbitMQ server using pika
     parameters = pika.URLParameters(rabbitmq_url)
     connection = pika.BlockingConnection(parameters)
@@ -114,6 +114,6 @@ def consume_passenger_events():
     channel.basic_qos(prefetch_count=1)  # Limit the number of messages sent at once
     channel.basic_consume(queue=queue_name, on_message_callback=callback)
 
-    print("Waiting for passengers...")
+    print("Waiting for driver events...")
     # Start consuming messages
     channel.start_consuming()
