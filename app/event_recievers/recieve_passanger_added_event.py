@@ -53,6 +53,7 @@ def callback(ch, method, properties, body):
 
         # Prepare data for insertion
         insert_data = (
+            data['id'],  # This will be stored as passenger_id
             data['firstName'],
             data['lastName'],
             data['email'],
@@ -66,8 +67,8 @@ def callback(ch, method, properties, body):
         # SQL insert statement
         insert_query = """
             INSERT INTO passengers_info 
-            (firstname, lastname, email, phone, presentaddress, status, rating, createdat)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            (passenger_id, firstname, lastname, email, phone, presentaddress, status, rating, createdat)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         # Execute the insert
@@ -82,6 +83,11 @@ def callback(ch, method, properties, body):
         # Acknowledge the message
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
+    except psycopg2.errors.UniqueViolation as e:
+        print(f"Duplicate record detected: {str(e)}")
+        print(f"This passenger (ID: {data['id']}) is already registered")
+        # Acknowledge the message since it's a known case
+        ch.basic_ack(delivery_tag=method.delivery_tag)
     except json.JSONDecodeError as e:
         print(f"Error decoding JSON: {str(e)}")
         print(f"Invalid message format: {body}")
