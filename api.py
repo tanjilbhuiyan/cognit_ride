@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.event_recievers.recieve_passanger_added_event import consume_passenger_events
-from app.event_recievers.recieve_ride_added_event import consume_rider_events
+from app.event_recievers.recieve_rider_added_event import consume_rider_events
 from app.repository.database import db
 from app.tests.events_tester import publish_message
 
@@ -39,36 +39,36 @@ app.add_middleware(
 
 
 async def run_consumer_in_background():
-    data = {
-        "id": "60a7c8e77c213e5ce1234567",
-        "firstName": "John",
-        "lastName": "Doe",
-        "email": "john.doe@example.com",
-        "phone": "+1-555-123-4567",
-        "identificationNumber": "AB1234567",
-        "identificationType": "Driver's License",
-        "identificationDocuments": [
-            "driver_license_front.jpg",
-            "driver_license_back.jpg"
-        ],
-        "presentAddress": "123 Main St, Anytown, USA 12345",
-        "permanentAddress": "456 Oak Ave, Hometown, USA 67890",
-        "trainingStatus": "Completed",
-        "licenseType": "Commercial",
-        "vehicleType": "Sedan",
-        "vehicleFitnessStatus": "Passed",
-        "status": "Active",
-        "rating": 4.8,
-        "activeStatus": True,
-        "licenseDocuments": [
-            "commercial_license.pdf",
-            "vehicle_registration.pdf"
-        ],
-        "createdAt": 1621234567890,
-        "updatedAt": 1621345678901,
-        "deletedAt": None
-    }
-    publish_message(json.dumps(data))
+    # data = {
+    #     "id": "60a7c8e77c213e5ce1234567",
+    #     "firstName": "John",
+    #     "lastName": "Doe",
+    #     "email": "john.doe@example.com",
+    #     "phone": "+1-555-123-4567",
+    #     "identificationNumber": "AB1234567",
+    #     "identificationType": "Driver's License",
+    #     "identificationDocuments": [
+    #         "driver_license_front.jpg",
+    #         "driver_license_back.jpg"
+    #     ],
+    #     "presentAddress": "123 Main St, Anytown, USA 12345",
+    #     "permanentAddress": "456 Oak Ave, Hometown, USA 67890",
+    #     "trainingStatus": "Completed",
+    #     "licenseType": "Commercial",
+    #     "vehicleType": "Sedan",
+    #     "vehicleFitnessStatus": "Passed",
+    #     "status": "Active",
+    #     "rating": 4.8,
+    #     "activeStatus": True,
+    #     "licenseDocuments": [
+    #         "commercial_license.pdf",
+    #         "vehicle_registration.pdf"
+    #     ],
+    #     "createdAt": 1621234567890,
+    #     "updatedAt": 1621345678901,
+    #     "deletedAt": None
+    # }
+    # publish_message(json.dumps(data))
     loop = asyncio.get_event_loop()
 
     # Run both tasks concurrently

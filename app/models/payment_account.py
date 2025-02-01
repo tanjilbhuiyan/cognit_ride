@@ -2,15 +2,40 @@ from sqlalchemy import Column, Integer, String, ForeignKey, JSON, Enum
 from sqlalchemy.orm import relationship
 from app.repository.database import Base
 
-
-class User(Base):
-    __tablename__ = "user"
+class PassengersInfo(Base):
+    __tablename__ = "passengers_info"
 
     id = Column(Integer, primary_key=True, index=True)
-    username = Column(String, unique=True, nullable=False)
+    firstName = Column(String, nullable=False)
+    lastName = Column(String, nullable=False)
     email = Column(String, unique=True, nullable=False)
-    payment_accounts = relationship("PaymentAccount", back_populates="user")
+    phone = Column(String, unique=True)
+    presentAddress = Column(String)
+    status = Column(Boolean, default=True)
+    rating = Column(Numeric(3, 2), default=0.0)
+    createdAt = Column(DateTime, default=datetime.utcnow)
 
+    # Relationships
+    payment_methods = relationship("PaymentMethod", back_populates="passenger")
+    payment_accounts = relationship("PaymentAccount", back_populates="passenger")
+
+class DriversInfo(Base):
+    __tablename__ = "drivers_info"
+
+    id = Column(Integer, primary_key=True, index=True)
+    firstName = Column(String, nullable=False)
+    lastName = Column(String, nullable=False)
+    email = Column(String, unique=True, nullable=False)
+    phone = Column(String, unique=True)
+    presentAddress = Column(String)
+    status = Column(Boolean, default=True)
+    rating = Column(Numeric(3, 2), default=0.0)
+    createdAt = Column(DateTime, default=datetime.utcnow)
+    
+    # Driver specific fields
+    licenseType = Column(String, nullable=False)
+    vehicleType = Column(String, nullable=False)
+    isAvailable = Column(Boolean, default=True)
 
 class PaymentAccount(Base):
     __tablename__ = "payment_account"

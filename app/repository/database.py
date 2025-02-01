@@ -43,7 +43,7 @@ class Database:
 
 # Initialize the database connection
 db_user = "erp"
-db_pass = quote_plus("admin@bs617")
+db_pass = "admin@bs617"
 db_name = "archxpress"
 db_host = "localhost"
 db_port = "5432"
