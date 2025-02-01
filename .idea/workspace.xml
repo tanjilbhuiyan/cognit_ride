@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58b9e275-e1c2-4df2-9405-ee7dd1245d26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/controller/payment_recievers/offline_payment_reciever.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/scalars/payment_recieved_scalars.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/service/payment_reciever/offline_payment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controller/PaymentAccount/payment_account.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/event_recievers/recieve_passanger_added_event.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/event_recievers/recieve_passanger_added_event.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/event_recievers/recieve_rider_added_event.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/event_recievers/recieve_rider_added_event.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/repository/interfaces.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/repository/interfaces.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/service/payment_account/payment_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/service/payment_account/payment_account.py" afterDir="false" />
-    </list>
+    <list default="true" id="58b9e275-e1c2-4df2-9405-ee7dd1245d26" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,7 +32,6 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
     "last_opened_file_path": "/home/do_or_die/Desktop/ArchitectXpressCodes/cognit_ride",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
