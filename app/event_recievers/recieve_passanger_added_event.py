@@ -7,7 +7,7 @@ fake = Faker()
 
 # RabbitMQ connection credentials
 rabbitmq_url = "amqps://avxpoguo:Da6pggbTCzcN6BiyrTnva-7549c5dU89@fuji.lmq.cloudamqp.com/avxpoguo"
-queue_name = "passenger_registration_exchange"
+queue_name = "test_data"
 
 # MongoDB connection credentials
 username = "snewaj"
