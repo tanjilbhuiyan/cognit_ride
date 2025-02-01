@@ -6,7 +6,7 @@ fake = Faker()
 
 # RabbitMQ connection credentials
 rabbitmq_url = "amqps://avxpoguo:Da6pggbTCzcN6BiyrTnva-7549c5dU89@fuji.lmq.cloudamqp.com/avxpoguo"
-queue_name = "driver_registration_exchange"
+queue_name = "passenger_registration_exchange"
 
 
 def callback(ch, method, properties, body):
@@ -24,6 +24,8 @@ def consume_rider_events():
 
     # Declare the queue to ensure it exists
     channel.queue_declare(queue=queue_name, durable=True)
+    exchange_name = 'passenger_registration_exchange'  # Name of the exchange created by the other team
+    channel.queue_bind(exchange=exchange_name, queue=queue_name)
 
     # Set up the consumer to receive messages from the queue
     channel.basic_qos(prefetch_count=1)  # Limit the number of messages sent at once

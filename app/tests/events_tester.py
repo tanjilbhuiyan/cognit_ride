@@ -3,7 +3,7 @@ import json
 
 # RabbitMQ connection credentials
 rabbitmq_url = "amqps://avxpoguo:Da6pggbTCzcN6BiyrTnva-7549c5dU89@fuji.lmq.cloudamqp.com/avxpoguo"
-queue_name = "test_data"
+queue_name = "driver_registration_exchange"
 
 
 def publish_message(message):
