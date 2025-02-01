@@ -43,6 +43,6 @@ def consume_passenger_events():
     channel.basic_qos(prefetch_count=1)  # Limit the number of messages sent at once
     channel.basic_consume(queue=queue_name, on_message_callback=callback)
 
-    print("Waiting for passangers...")
+    print("Waiting for passengers event...")
     # Start consuming messages
     channel.start_consuming()
