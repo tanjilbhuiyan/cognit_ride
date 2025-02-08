@@ -92,20 +92,20 @@ def callback(ch, method, properties, body):
     except json.JSONDecodeError as e:
         print(f"Error decoding JSON: {str(e)}")
         print(f"Invalid message format: {body}")
-        ch.basic_nack(delivery_tag=method.delivery_tag)
+        ch.basic_ack(delivery_tag=method.delivery_tag)
     except KeyError as e:
         print(f"Missing required field: {str(e)}")
         print(f"Received data: {data if 'data' in locals() else 'No data parsed'}")
-        ch.basic_nack(delivery_tag=method.delivery_tag)
+        ch.basic_ack(delivery_tag=method.delivery_tag)
     except ValueError as e:
         print(f"Value error: {str(e)}")
         print(f"Data type received: {type(data) if 'data' in locals() else 'No data'}")
-        ch.basic_nack(delivery_tag=method.delivery_tag)
+        ch.basic_ack(delivery_tag=method.delivery_tag)
     except Exception as e:
         print(f"Error processing message: {str(e)}")
         print(f"Error type: {type(e)}")
         print(f"Data that caused error: {data if 'data' in locals() else 'No data parsed'}")
-        ch.basic_nack(delivery_tag=method.delivery_tag)
+        ch.basic_ack(delivery_tag=method.delivery_tag)
 
 
 def consume_rider_events():
@@ -116,6 +116,10 @@ def consume_rider_events():
 
     # Declare the queue to ensure it exists
     channel.queue_declare(queue=queue_name, durable=True)
+    exchange_name = 'passenger_registration_exchange'  # Name of the exchange created by the other team
+    channel.queue_bind(exchange=exchange_name, queue=queue_name)
+
+
 
     # Set up the consumer to receive messages from the queue
     channel.basic_qos(prefetch_count=1)  # Limit the number of messages sent at once

@@ -4,7 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58b9e275-e1c2-4df2-9405-ee7dd1245d26" name="Changes" comment="" />
+    <list default="true" id="58b9e275-e1c2-4df2-9405-ee7dd1245d26" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/garbage/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/garbage/controller/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/garbage/controller/payment_recievers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/garbage/event_recievers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/garbage/event_recievers/command_handler.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/garbage/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/garbage/service/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/garbage/service/payment_account/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/garbage/service/payment_reciever/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/garbage/service/payment_reciever/offline_payment.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/garbage/service/transaction/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/garbage/service/transaction/payment_account.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/garbage/tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/queue/handlers/payment_handler.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/queue/listeners/payment_recieved_listener.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/queue/publisher/payment_success.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/repository/payment_received/payment_recieved.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controller/payment_recievers/offline_payment_reciever.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/garbage/controller/payment_recievers/offline_payment_reciever.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/event_recievers/receive_payment_event.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/garbage/event_recievers/receive_payment_event.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/event_recievers/recieve_passanger_added_event.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/garbage/event_recievers/recieve_passanger_added_event.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/event_recievers/recieve_rider_added_event.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/garbage/event_recievers/recieve_rider_added_event.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/event_recievers/test_payment_publisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/garbage/event_recievers/test_payment_publisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/payment.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/garbage/models/payment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/payment_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/garbage/models/payment_account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repository/PaymentAccount/payment_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/garbage/PaymentAccount/payment_account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repository/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/repository/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repository/interfaces.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/garbage/interfaces.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/payment_account/payment_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/garbage/service/payment_account/payment_account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/payment_reciever/offline_payment.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/aggregate_roots/payment_recieve.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/service/transaction/payment_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/garbage/PaymentAccount/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/tests/events_tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/garbage/tests/events_tester.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/tests/test_payment_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/garbage/tests/test_payment_account.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,10 +68,17 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/home/do_or_die/Desktop/ArchitectXpressCodes/cognit_ride",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/garbage" />
+      <recent name="$PROJECT_DIR$/app/queue" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

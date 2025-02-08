@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from app.models.payment_account import PaymentAccount, PaymentMethod
-from app.repository.interfaces import IPaymentAccountRepository
+from app.garbage.models import PaymentAccount, PaymentMethod
+from app.garbage.interfaces import IPaymentAccountRepository
 from typing import List, Optional
 
 

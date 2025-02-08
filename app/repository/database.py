@@ -44,8 +44,8 @@ class Database:
 # Initialize the database connection
 db_user = "erp"
 db_pass = "admin@bs617"
-db_name = "archxpress"
-db_host = "localhost"
+db_name = "congiride"
+db_host = "10.112.41.193"
 db_port = "5432"
 SQLALCHEMY_DATABASE_URL = f"postgresql://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}"
 db = Database(SQLALCHEMY_DATABASE_URL)

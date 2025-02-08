@@ -3,7 +3,7 @@ import json
 import psycopg2
 from datetime import datetime
 from app.repository.database import db_user, db_pass, db_name, db_host, db_port
-from app.models.payment import Payment
+from app.garbage.models import Payment
 
 # RabbitMQ connection credentials
 rabbitmq_url = "amqps://avxpoguo:Da6pggbTCzcN6BiyrTnva-7549c5dU89@fuji.lmq.cloudamqp.com/avxpoguo"
@@ -18,9 +18,10 @@ db_params = {
     "port": db_port
 }
 
+
 def callback(ch, method, properties, body):
     print("Received payment event...")
-    
+
     try:
         # Decode bytes to string if needed
         if isinstance(body, bytes):
@@ -33,7 +34,7 @@ def callback(ch, method, properties, body):
                 json_data = json.loads(json_data)  # Handle double-encoded JSON
         except json.JSONDecodeError:
             json_data = body
-            
+
         # Convert to Pydantic model
         payment = Payment(**json_data)
         print(f"Payment data validated: {payment.json()}")
@@ -90,23 +91,9 @@ def callback(ch, method, properties, body):
         # Acknowledge the message
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
-    except psycopg2.errors.UniqueViolation as e:
-        print(f"Duplicate payment record: {str(e)}")
-        print(f"Transaction ID or Ride ID already exists")
-        # Acknowledge the message since it's a known case
-        ch.basic_ack(delivery_tag=method.delivery_tag)
-    except json.JSONDecodeError as e:
-        print(f"Error decoding JSON: {str(e)}")
-        print(f"Invalid message format: {body}")
-        ch.basic_nack(delivery_tag=method.delivery_tag)
     except Exception as e:
-        print(f"Error processing payment: {str(e)}")
         ch.basic_nack(delivery_tag=method.delivery_tag)
-        if 'conn' in locals() and conn is not None:
-            conn.rollback()
-    finally:
-        if 'conn' in locals() and conn is not None:
-            conn.close()
+
 
 def consume_payment_events():
     """
@@ -119,7 +106,7 @@ def consume_payment_events():
 
     # Declare the queue to ensure it exists
     channel.queue_declare(queue=queue_name, durable=True)
-    
+
     # Bind to the exchange
     exchange_name = 'payment_transaction_exchange'
     channel.queue_bind(exchange=exchange_name, queue=queue_name)
@@ -130,6 +117,7 @@ def consume_payment_events():
 
     print("Waiting for payment events...")
     channel.start_consuming()
+
 
 if __name__ == "__main__":
     consume_payment_events()
